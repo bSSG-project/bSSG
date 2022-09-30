@@ -1,9 +1,40 @@
-# NOTE TO SELF
-# THIS NEEDS TO DETECT A FILE CREATION/EDIT/DELETION IN templates/ AND content/
-# IF ONE IS DETECTED, RUN THE COMMAND 'bssg-generate'
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+import os
+import time
+
+class WatcherEventHandler(FileSystemEventHandler):
+    @staticmethod
+    def on_any_event(event):
+        if event.is_directory:
+            return
+        
+        print("Change detected, regenerating!")
+        os.system("bssg-generate")
+        print("Regeneration finished.")
+
 
 def main():
-    pass
+    print("Now watching content/ and templates/ for changes...")
+    print("When a change is detected, bssg-generate will be executed.")
+
+    path_content = "./content"
+    path_templates = "./templates"
+
+    observer = Observer()
+    handler = WatcherEventHandler()
+
+    observer.schedule(handler, path_content, recursive=True)
+    observer.schedule(handler, path_templates, recursive=True)
+    observer.start()
+
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    
+    observer.join()
 
 
 if __name__ == "__main__":

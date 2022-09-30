@@ -4,12 +4,10 @@ A simple, powerful static site generator written in Python. You can write templa
 Can also be described as: "a complex find-and-replace program combined with a Markdown renderer and file copier masquerading as a static site generator"; this is also accurate.
 
 ## Dependencies
-You need Python 3 and Python-Markdown to run this. `setup.py` should automatically install this for you.
-
-You can get Python-Markdown in pip using `pip install markdown` or in your package manager. On Arch Linux this is the `python-markdown` package in pacman.
+You need Python 3 and Python-Markdown to run this. On Windows, `setup.py` will automatically install the dependencies for you. On Linux, it is recommended to install the dependencies through your package manager, usually in a package called `python-markdown` or similar.
 
 ## Installation
-Download or `git clone` this repository. Install bSSG by using `python setup.py install`.
+Download or `git clone` this repository. Install bSSG by using `python setup.py install`. For Linux users, it is recommended to install the program dependencies through your package manager rather than through pip, see above. Once they are installed, run `python setup.py install`.
 
 ## Site Generation
 Create the folders `templates/` and `content/` anywhere, then create `template.html` in the `templates/` folder. This will act as the default template for all pages. Once you have written that, create a `???.md` file in `content/` (give it any name you want instead of ???) and write a short bit of Markdown text to verify that this is working. Finally, run `bssg-generate` while in the folder containing the `templates/` and `content/` folder. The generated static site will be in the new `generated-site/` folder.

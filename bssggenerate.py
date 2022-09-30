@@ -86,6 +86,10 @@ def auto_page_title(file_name):
 
 
 def main():
+    if not os.path.isdir("./generated-site"): os.mkdir('./generated-site')
+    if not os.path.isdir("./templates"): os.mkdir('./templates')
+    if not os.path.isdir("./content"): os.mkdir('./content')
+
     markdown_files = glob.glob('content/**/*.md', recursive=True)
     
     for md in markdown_files:

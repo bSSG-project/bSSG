@@ -3,12 +3,19 @@ from watchdog.events import FileSystemEventHandler
 import os
 import time
 
+class Singleton:
+    last_event_time = time.time()
+
 class WatcherEventHandler(FileSystemEventHandler):
     @staticmethod
     def on_any_event(event):
         if event.is_directory:
             return
         
+        if time.time() - Singleton.last_event_time <= 1:
+            return
+        Singleton.last_event_time = time.time()
+
         print("Change detected, regenerating!")
         os.system("bssg-generate")
         print("Regeneration finished.")

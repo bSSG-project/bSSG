@@ -38,9 +38,9 @@ def main():
         else:
             print("Couldn't find bssggenerate.py! Re-installing bSSG may fix this issue.")
             exit(1)
-
-    print("Now watching content/ and templates/ for changes...")
-    print("When a change is detected, bssg-generate will be executed.")
+    
+    if not os.path.exists("./templates"): os.mkdir("./templates")
+    if not os.path.exists("./content"): os.mkdir("./content")
 
     path_content = "./content"
     path_templates = "./templates"
@@ -51,6 +51,9 @@ def main():
     observer.schedule(handler, path_content, recursive=True)
     observer.schedule(handler, path_templates, recursive=True)
     observer.start()
+
+    print("Now watching content/ and templates/ for changes...")
+    print("When a change is detected, bssg-generate will be executed.")
 
     try:
         while True:

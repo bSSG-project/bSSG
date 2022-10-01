@@ -12,6 +12,9 @@ Download or `git clone` this repository. Install bSSG by using `python setup.py 
 ## Site Generation
 Create the folders `templates/` and `content/` anywhere, then create `template.html` in the `templates/` folder. This will act as the default template for all pages. Once you have written that, create a `???.md` file in `content/` (give it any name you want instead of ???) and write a short bit of Markdown text to verify that this is working. Finally, run `bssg-generate` while in the folder containing the `templates/` and `content/` folder. The generated static site will be in the new `generated-site/` folder.
 
+## Watching
+Running `bssg-watch` will run `bssg-generate` whenever content or templates were updated.
+
 ## Custom features
 
 ### Both templates and Markdown

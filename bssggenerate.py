@@ -36,10 +36,10 @@ def change_setting(page, setting, new_value):
 
 def make_missing_dirs(file_name: str):
     file_path_l = file_name.split("/")
-    if len(file_path_l) <= 1:
-        return
+    if len(file_path_l) <= 1: return
     file_path_l.pop()
     file_path = "/".join(file_path_l)
+    if os.path.exists("generated-site/" + file_path): return
     os.makedirs("generated-site/" + file_path)
 
 @cache

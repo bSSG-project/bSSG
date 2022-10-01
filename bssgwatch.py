@@ -1,6 +1,6 @@
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-import os
+import subprocess
 import time
 
 class Singleton:
@@ -17,8 +17,12 @@ class WatcherEventHandler(FileSystemEventHandler):
         Singleton.last_event_time = time.time()
 
         print("Change detected, regenerating!")
-        os.system("bssg-generate")
-        print("Regeneration finished.")
+        generate = subprocess.run("bssg-generate", capture_output=True)
+        if generate.returncode != 0:
+            print("An error occured while the site was regenerating. The error was:")
+            print(bytes.decode(generate.stderr))
+        else:
+            print("The site was regenerated successfully.")
 
 
 def main():

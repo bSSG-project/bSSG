@@ -81,6 +81,11 @@ def generate_page(page):
                 contents = contents.replace(inst, page_content)
             else:
                 contents = contents.replace(inst, file_compile_markdown("content/" + data + ".md"))
+    
+    # no subst
+    curly_braces = re.findall(r'\{subst!.*?\}', contents)
+    for inst in curly_braces:
+        contents = contents.replace(inst, inst.replace("!", ":"), 1)
 
     f.write(contents)
     f.close()

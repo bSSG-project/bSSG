@@ -26,6 +26,10 @@ These features can be used in both an HTML template and your Markdown content.
 
 - `{subst:content}`: Special substitute, substitutes in the current page content.
 
+- `{subst!???}`: Substitutes itself with `{subst:???}` without actually substituting ???, useful for writing documentation.
+
+- `{option!???=???}`: Substitutes itself with `{option:???=???}`, similar to above.
+
 ### Markdown only
 These features can only be used in Markdown content.
 

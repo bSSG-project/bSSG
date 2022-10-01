@@ -34,9 +34,18 @@ def change_setting(page, setting, new_value):
         page.template = new_value
     pages[page_num] = page
 
+def make_missing_dirs(file_name: str):
+    file_path_l = file_name.split("/")
+    if len(file_path_l) <= 1:
+        return
+    file_path_l.pop()
+    file_path = "/".join(file_path_l)
+    os.makedirs("generated-site/" + file_path)
+
 @cache
 def generate_page(page):
     page_num = pages.index(page)
+    make_missing_dirs(page.file)
     f = open("generated-site/" + page.file, 'w')
     page_content = file_compile_markdown(page.content)
 
@@ -79,10 +88,26 @@ def auto_page_title(file_name):
     page_name = os.path.splitext(file_name)[0]
     page_name = page_name.split("/")[-1]
     page_name = page_name.split("\\")[-1]
-    file_name = page_name + ".html"
     page_name = page_name.replace("_", ' ')
     page_name = page_name.title()
-    return page_name, file_name
+    return page_name
+
+
+def auto_file_name(input_file_name):
+    file_name: str = os.path.splitext(input_file_name)[0]
+    file_name = file_name.replace("\\", "/")
+    file_name = file_name.split("/")
+    file_name_list = list(reversed(file_name))
+    file_name: list = []
+    i = 0
+    while True:
+        if file_name_list[i] == "content":
+            break
+        file_name.append(file_name_list[i])
+        i += 1
+    file_name = list(reversed(file_name))
+    file_name: str = "/".join(file_name)
+    return file_name + ".html"
 
 
 def main():
@@ -93,7 +118,8 @@ def main():
     markdown_files = glob.glob('content/**/*.md', recursive=True)
     
     for md in markdown_files:
-        page_name, file_name = auto_page_title(md)
+        page_name = auto_page_title(md)
+        file_name = auto_file_name(md)
         if file_name[0] == "_":
             continue    # Special reserved _ file name. will not render
         pages.append(Page(title=page_name, content=md, file=file_name, template='template'))

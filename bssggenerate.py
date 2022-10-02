@@ -47,7 +47,9 @@ def generate_page(page):
     page_num = pages.index(page)
     make_missing_dirs(page.file)
     f = open("generated-site/" + page.file, 'w')
-    page_content = file_compile_markdown(page.content)
+    page_content_f = open(page.content, 'r')
+    page_content = page_content_f.read()
+    page_content_f.close()
 
     # set options
     curly_braces = re.findall(r'\{.*?\}', page_content)
@@ -61,6 +63,8 @@ def generate_page(page):
             page_content = page_content.replace(inst, '', 1)
         elif data.startswith("option!"):
             page_content = page_content.replace(inst, inst.replace("!", ":"), 1)
+    
+    page_content = markdown.markdown(page_content)
     
     # reload page data
     page = pages[page_num]

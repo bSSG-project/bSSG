@@ -6,6 +6,7 @@ setup(
     py_modules=['bssggenerate', 'bssgwatch'],
     install_requires=[
         "markdown",
+        "watchdog"
     ],
     entry_points={
         "console_scripts": [

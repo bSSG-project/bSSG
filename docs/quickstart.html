@@ -22,15 +22,19 @@
 <h2>Get started</h2>
 <p>Running the command <code>bssg-generate</code> will generate your site. Of course, you haven't written your site yet so it will do nearly nothing. But, this command will create some folders for you: <code>content</code>, <code>templates</code>, and <code>generated-site</code>. Place HTML templates in <code>templates</code> and Markdown content in <code>content</code>. When you next run <code>bssg-generate</code>, the site will be generated using what you've put in those folders.</p>
 <h2>Your first template</h2>
-<p>Create a file called <code>template.html</code> in the <code>templates</code> folder; this will act as the default template for all pages on your site. This is standard HTML, with a few additions:
-* Entering <code>{subst:title}</code> will replace (substitute, hence <code>subst</code>) itself with the pages title, inferred from either the Markdown file name or as it was specified in the Markdown file.
-* Entering <code>{subst:content}</code> will substitute itself with the content of the Markdown file.
-* Entering <code>{subst:anything else}</code> will substitute itself with the content of the specified Markdown file.
-This template can be a simple heading and paragraph for now.</p>
+<p>Create a file called <code>template.html</code> in the <code>templates</code> folder; this will act as the default template for all pages on your site. This is standard HTML, with a few additions:</p>
+<ul>
+<li>Entering <code>{subst:title}</code> will replace (substitute, hence <code>subst</code>) itself with the pages title, inferred from either the Markdown file name or as it was specified in the Markdown file.</li>
+<li>Entering <code>{subst:content}</code> will substitute itself with the content of the Markdown file.</li>
+<li>Entering <code>{subst:anything else}</code> will substitute itself with the content of the specified Markdown file.
+This template can be a simple heading and paragraph for now.</li>
+</ul>
 <h2>Writing content</h2>
-<p>Now, you can write your content files. In the content folder, create a file called <code>index.md</code>. This file is raw Markdown, plus the above additions and these additional additions:
-* Entering <code>{option:title=Title}</code> will change what <code>{subst:title}</code> substitutes itself as, though this will not change where the file is saved.
-* Entering <code>{option:template=template}</code> will change the template the page is using from the default <code>template.html</code>.</p>
+<p>Now, you can write your content files. In the content folder, create a file called <code>index.md</code>. This file is raw Markdown, plus the above additions and these additional additions:</p>
+<ul>
+<li>Entering <code>{option:title=Title}</code> will change what <code>{subst:title}</code> substitutes itself as, though this will not change where the file is saved.</li>
+<li>Entering <code>{option:template=template}</code> will change the template the page is using from the default <code>template.html</code>.</li>
+</ul>
 <h2>Generating the new site</h2>
 <p>Run <code>bssg-generate</code> in the root directory of your project to generate the site! The generated HTML will be stored in the <code>generated-site</code> folder. Inspect it all you want, you've created a site and learned the core features of bSSG!</p>
 <h2>Other tips for advanced development</h2>

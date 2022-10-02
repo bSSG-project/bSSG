@@ -1,0 +1,1 @@
+**bSSG Docs** | [Home Page](https://bevan0.github.io/bSSG) | [Installation](https://bevan0.github.io/bSSG/install) | [Quick Start](https://bevan0.github.io/bSSG/quickstart)

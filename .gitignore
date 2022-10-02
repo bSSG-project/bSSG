@@ -1,6 +1,6 @@
-generated-site/
-content/
-templates/
+/generated-site/
+/content/
+/templates/
 dist/
 build/
 bSSG.egg-info/

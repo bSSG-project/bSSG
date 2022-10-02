@@ -76,11 +76,11 @@ def generate_page(page):
         if data.startswith("subst:"):
             data = data[6:]
             if data == "title":
-                contents = contents.replace(inst, page.title)
+                contents = contents.replace(inst, page.title, 1)
             elif data == "content":
-                contents = contents.replace(inst, page_content)
+                contents = contents.replace(inst, page_content, 1)
             else:
-                contents = contents.replace(inst, file_compile_markdown("content/" + data + ".md"))
+                contents = contents.replace(inst, file_compile_markdown("content/" + data + ".md"), 1)
     
     # no subst
     curly_braces = re.findall(r'\{subst!.*?\}', contents)

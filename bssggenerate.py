@@ -58,7 +58,7 @@ def generate_page(page):
             data = data[7:]
             data = data.split('=')
             change_setting(page, data[0], data[1])
-            page_content = page_content.replace(inst, '')
+            page_content = page_content.replace(inst, '', 1)
         elif data.startswith("option!"):
             page_content = page_content.replace(inst, inst.replace("!", ":"), 1)
     

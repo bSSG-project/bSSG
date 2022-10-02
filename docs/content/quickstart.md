@@ -3,7 +3,7 @@
 This guide will teach you the basics of bSSG. If you have not yet installed it, read the installation guide [here](https://bevan0.github.io/bSSG/install). This page is still a WIP, as-is bSSG itself.
 
 ## Get started
-Running the command `bssg-generate` will generate your site. Of course, you haven't written your site yet so it will do nearly nothing. But, this command will create some folders for you: `content`, `templates`, and `generated-site`. Place HTML templates in `templates` and Markdown content in `content`. When you next run `bssg-generate`, the site will be generated using what you've put in those folders.
+Running the command `bssg-generate` will generate your site. Of course, you haven't written your site yet so it will do nearly nothing. But, this command will create some folders for you: `content`, `templates`, and `generated-site`. Place HTML templates in `templates` and content (both Markdown and HTML) in `content`. When you next run `bssg-generate`, the site will be generated using what you've put in those folders.
 
 ## Your first template
 Create a file called `template.html` in the `templates` folder; this will act as the default template for all pages on your site. This is standard HTML, with a few additions:
@@ -18,6 +18,9 @@ Now, you can write your content files. In the content folder, create a file call
 
 * Entering `{option!title=Title}` will change what `{subst!title}` substitutes itself as, though this will not change where the file is saved.
 * Entering `{option!template=template}` will change the template the page is using from the default `template.html`.
+
+### HTML content
+You are also able to write HTML content instead of Markdown. Create a `.html` file in your content folder and write an HTML "excerpt", this will work near identically with Markdown. If you have a HTML file and a Markdown file with the same name, the HTML file will be used.
 
 ## Generating the new site
 Run `bssg-generate` in the root directory of your project to generate the site! The generated HTML will be stored in the `generated-site` folder. Inspect it all you want, you've created a site and learned the core features of bSSG!

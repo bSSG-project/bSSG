@@ -43,7 +43,7 @@ def make_missing_dirs(file_name: str):
     os.makedirs("generated-site/" + file_path)
 
 @cache
-def generate_page(page):
+def generate_page(page: Page):
     page_num = pages.index(page)
     make_missing_dirs(page.file)
     f = open("generated-site/" + page.file, 'w')
@@ -64,7 +64,8 @@ def generate_page(page):
         elif data.startswith("option!"):
             page_content = page_content.replace(inst, inst.replace("!", ":"), 1)
     
-    page_content = markdown.markdown(page_content)
+    if page.content.endswith(".md"):
+        page_content = markdown.markdown(page_content)
     
     # reload page data
     page = pages[page_num]
@@ -95,6 +96,7 @@ def generate_page(page):
     f.close()
     template.close()
 
+@cache
 def auto_page_title(file_name):
     page_name = os.path.splitext(file_name)[0]
     page_name = page_name.split("/")[-1]
@@ -103,7 +105,7 @@ def auto_page_title(file_name):
     page_name = page_name.title()
     return page_name
 
-
+@cache
 def auto_file_name(input_file_name):
     file_name: str = os.path.splitext(input_file_name)[0]
     file_name = file_name.replace("\\", "/")
@@ -135,8 +137,33 @@ def main():
             continue    # Special reserved _ file name. will not render
         pages.append(Page(title=page_name, content=md, file=file_name, template='template'))
 
+    html_files = glob.glob('content/**/*.html', recursive=True)
+
+    for html in html_files:
+        page_name = auto_page_title(html)
+        file_name = auto_file_name(html)
+        if file_name[0] == "_":
+            continue
+        pages.append(Page(title=page_name, content=html, file=file_name, template='template'))
+
+    html_pages = []
+    md_pages = []
+
+    for page in pages:
+        if page.content.endswith(".md"):
+            md_pages.append(page)
+        else:
+            html_pages.append(page)
+    
+    for md in md_pages:
+        for html in html_pages:
+            if html.file == md.file:
+                pages.remove(md)
+                break
+
     for page in pages:
         generate_page(page)
+
 
 if __name__ == "__main__":
     main()

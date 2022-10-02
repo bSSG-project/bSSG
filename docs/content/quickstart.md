@@ -19,3 +19,7 @@ Now, you can write your content files. In the content folder, create a file call
 
 ## Generating the new site
 Run `bssg-generate` in the root directory of your project to generate the site! The generated HTML will be stored in the `generated-site` folder. Inspect it all you want, you've created a site and learned the core features of bSSG!
+
+## Other tips for advanced development
+* When working further, running `bssg-watch` will regenerate the site whenever a change is detected.
+* Appending content file names with an `_` will skip that file during generation. This is useful for content pages that have no content that are substituted in multiple pages.

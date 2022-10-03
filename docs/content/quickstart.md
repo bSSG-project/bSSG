@@ -1,6 +1,6 @@
 {option:title=Quickstart Guide}
 
-This guide will teach you the basics of bSSG. If you have not yet installed it, read the installation guide [here](https://bevan0.github.io/bSSG/install). This page is still a WIP, as-is bSSG itself.
+This guide will teach you the basics of bSSG. If you have not yet installed it, read the installation guide [here](https://bssg-project.github.io/bSSG/install). This page is still a WIP, as-is bSSG itself.
 
 ## Get started
 Running the command `bssg-generate` will generate your site. Of course, you haven't written your site yet so it will do nearly nothing. But, this command will create some folders for you: `content`, `templates`, and `generated-site`. Place HTML templates in `templates` and content (both Markdown and HTML) in `content`. When you next run `bssg-generate`, the site will be generated using what you've put in those folders.

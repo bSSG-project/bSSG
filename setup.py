@@ -3,15 +3,15 @@ from setuptools import setup
 setup(
     name="bSSG",
     version="0.1.0",
-    py_modules=['bssggenerate', 'bssgwatch'],
+    package_dir={"bSSG": "src"},
     install_requires=[
         "markdown",
         "watchdog"
     ],
     entry_points={
         "console_scripts": [
-            'bssg-generate = bssggenerate:main',
-            'bssg-watch = bssgwatch:main'
+            'bssg-generate = bSSG.bssggenerate:main',
+            'bssg-watch = bSSG.bssgwatch:main'
         ]
     }
 )

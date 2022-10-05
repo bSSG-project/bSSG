@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name="bSSG",
     version="0.1.0",
-    package_dir={"": "src"},
+    package_dir={"": "bSSG"},
     install_requires=[
         "markdown",
         "watchdog"

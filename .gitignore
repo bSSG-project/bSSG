@@ -4,3 +4,4 @@ generated-site/
 dist/
 build/
 bSSG.egg-info/
+venv/

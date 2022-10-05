@@ -37,7 +37,7 @@ jobs:
         with:
           python-version: 'pypy3.9'
       - name: Setup bSSG
-        run: python setup.py install
+        run: python -m pip install .
       - name: Generate bSSG site
         run: cd docs && bssg-generate
       - name: Upload artifact
